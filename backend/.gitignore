@@ -2,7 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### Eclipse ###
-.metadata
+.metadata/*
 
 ### STS ###
 .apt_generated
