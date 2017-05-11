@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.btpn.shopapp</groupId>
-	<artifactId>shopapp</artifactId>
+	<groupId>com.btpn.brs</groupId>
+	<artifactId>brs-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>shopapp</name>
-	<description>Demo project for Spring Boot</description>
+	<name>brs-backend</name>
+	<description>The backend for BTPN Retail System exercise program</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -37,7 +37,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

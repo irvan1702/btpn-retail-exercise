@@ -1,8 +1,6 @@
-package com.btpn.persistence.entity.transactiondetail;
+package com.btpn.persistence.entity.brs;
 
 import javax.persistence.*;
-
-import com.btpn.persistence.entity.item.ItemEntity;
 
 @Entity
 @Table(name="transaction_detail")
@@ -15,7 +13,11 @@ public class TransactionDetailEntity {
 	@ManyToOne()
 	@JoinColumn(name="item_id")
 	private ItemEntity item;
-	
+
+	@ManyToOne()
+	@JoinColumn(name="transaction_id")
+	private TransactionEntity transaction;
+
 	@Column(name="qty", nullable=false)
 	private int qty;
 	
@@ -74,6 +76,14 @@ public class TransactionDetailEntity {
 
 	public void setSubtotal(Double subtotal) {
 		this.subtotal = subtotal;
+	}
+
+	public TransactionEntity getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(TransactionEntity transaction) {
+		this.transaction = transaction;
 	}
 	
 	

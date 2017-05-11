@@ -1,8 +1,6 @@
-package com.btpn.persistence.entity.item;
+package com.btpn.persistence.entity.brs;
 
 import javax.persistence.*;
-
-import com.btpn.persistence.entity.itemcategory.ItemCategoryEntity;
 
 @Entity
 @Table(name="item")
@@ -15,14 +13,14 @@ public class ItemEntity {
 	@Column(name="item_name", nullable=false)
 	private String name;
 	
-	@Column(name="item_price")
+	@Column(name="item_price", nullable=false)
 	private Double price;
 	
 	@Column(name="item_picture")
 	private String picture;
 	
 	@ManyToOne()
-	@JoinColumn(name="category_id")
+	@JoinColumn(name="item_category_id")
 	private ItemCategoryEntity itemCategory;
 
 	public Long getId() {

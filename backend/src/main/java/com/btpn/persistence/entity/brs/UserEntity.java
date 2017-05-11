@@ -1,12 +1,10 @@
-package com.btpn.persistence.entity.user;
+package com.btpn.persistence.entity.brs;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.btpn.persistence.entity.role.RoleEntity;
-import com.btpn.persistence.entity.transaction.TransactionEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -18,21 +16,15 @@ public class UserEntity {
     @Column(name="user_id")
     @GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="username", nullable=false)
-	private String username;
-	
-	@Column(name="password", nullable=false)
-	private String password;
+
+	@Column(name="first_name", nullable=false)
+	private String firstName;
+
+	@Column(name="last_name", nullable=false)
+	private String lastName;
 	
 	@Column(name="address", nullable=false)
 	private String address;
-	
-	@Column(name="first_name", nullable=false)
-	private String firstName;
-	
-	@Column(name="last_name", nullable=false)
-	private String lastName;
 	
 	@Column(name="phone", nullable=false)
 	private String phone;
@@ -56,18 +48,6 @@ public class UserEntity {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public String getAddress() {
 		return address;

@@ -1,12 +1,10 @@
-package com.btpn.persistence.entity.transaction;
+package com.btpn.persistence.entity.brs;
 
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.btpn.persistence.entity.transactiondetail.TransactionDetailEntity;
-import com.btpn.persistence.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -31,7 +29,7 @@ public class TransactionEntity {
 	
 	@ManyToOne()
 	@JoinColumn(name="user_id")
-	private UserEntity userId;
+	private UserEntity user;
 	
 	@OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -78,12 +76,12 @@ public class TransactionEntity {
 		this.grandTotal = grandTotal;
 	}
 
-	public UserEntity getUserId() {
-		return userId;
+	public UserEntity getUser() {
+		return user;
 	}
 
-	public void setUserId(UserEntity userId) {
-		this.userId = userId;
+	public void setUser(UserEntity user) {
+		this.user = user;
 	}
 
 	public List<TransactionDetailEntity> getTransactionDetails() {

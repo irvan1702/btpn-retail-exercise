@@ -1,12 +1,12 @@
-package com.btpn.shopapp;
+package com.btpn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShopappApplication {
+public class BRSBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ShopappApplication.class, args);
+		SpringApplication.run(BRSBackendApplication.class, args);
 	}
 }

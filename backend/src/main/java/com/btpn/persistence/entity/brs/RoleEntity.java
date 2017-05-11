@@ -1,10 +1,9 @@
-package com.btpn.persistence.entity.role;
+package com.btpn.persistence.entity.brs;
 
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.btpn.persistence.entity.user.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -23,7 +22,7 @@ public class RoleEntity {
 	@Column(name="role_description")
 	private String roleDesc;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userRole", cascade = CascadeType.ALL)
     private @JsonIgnore
 	List<UserEntity> users;
 

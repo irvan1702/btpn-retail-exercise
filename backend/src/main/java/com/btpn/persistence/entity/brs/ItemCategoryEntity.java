@@ -1,10 +1,9 @@
-package com.btpn.persistence.entity.itemcategory;
+package com.btpn.persistence.entity.brs;
 
 import java.util.List;
 
 import javax.persistence.*;
 
-import com.btpn.persistence.entity.item.ItemEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -18,7 +17,7 @@ public class ItemCategoryEntity {
 	@Column(name="item_category_name", nullable=false)
 	private String name;
 
-	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "itemCategory", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<ItemEntity> items;
 	
