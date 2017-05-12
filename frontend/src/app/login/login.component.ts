@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
+  invalid: Boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,10 +30,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit(formValues)
   {
+    this.invalid = false;
     if (this.form.valid)
     {
-      this.authenticationService.login(formValues.username, formValues.password);
-      this.router.navigate(['home']);
+      this.authenticationService.login(formValues.username, formValues.password).subscribe(
+        (result) => {
+          if (result)
+            this.router.navigate(['home']);
+          else
+            this.invalid = true;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
   }
 }

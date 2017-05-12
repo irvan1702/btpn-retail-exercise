@@ -6,17 +6,18 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class AuthenticationService {
+export class UserService {
     constructor(private http: Http) { }
 
-    login(username: string, password: string) {
-        let credentials = new FormData(document.querySelector("form"));
-
-        //If authorized, set a session.
-        return this.http.post('/api/account/authorize', credentials).map(response=>{
-            localStorage.setItem('currentUser', "admin");
+    getUsers() {
+        return this.http.get('/api/user/all').subscribe(response => {
             return response.json();
         });
+    }
+
+    getUser(id: number)
+    {
+
     }
 
     logout() {

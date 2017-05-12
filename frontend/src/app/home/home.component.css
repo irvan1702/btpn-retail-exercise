@@ -1,0 +1,21 @@
+.container
+{
+    overflow: hidden;
+}
+
+.body
+{
+    padding: 10px;
+    box-sizing: border-box;
+    float: left;
+}
+
+.content
+{
+    width: 70%;
+}
+
+.menu
+{
+    width: 30%;
+}

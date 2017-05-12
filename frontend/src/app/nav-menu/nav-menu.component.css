@@ -1,0 +1,13 @@
+.menu
+{
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-item
+{
+    border: solid black 1px;
+    padding: 20px 10px;
+    margin: 10px auto;
+    cursor: pointer;
+}

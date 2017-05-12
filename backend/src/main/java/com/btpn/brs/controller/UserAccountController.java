@@ -18,6 +18,7 @@ public class UserAccountController {
     @Autowired
     private UserAccountDAOService userAccountDAOService;
 
+    //To-do: Make return value to Map.
     @RequestMapping(path = "/authorize", method = RequestMethod.POST)
     public ResponseEntity<Boolean> authorizeLogin(@RequestParam String username, @RequestParam String password)
     {
@@ -38,6 +39,6 @@ public class UserAccountController {
             }
         }
 
-        return new ResponseEntity<>(false, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(false, HttpStatus.OK);
     }
 }
