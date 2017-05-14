@@ -1,0 +1,41 @@
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead td
+{
+    border-bottom: solid gray 2px;
+    font-weight: bold;
+}
+
+td
+{
+    padding: 15px 5px;
+    min-width: 50px;
+    cursor: default;
+}
+
+td .mini-button
+{
+    min-width: 0;
+    padding: 0 5px;
+}
+
+tr:hover
+{
+    background-color: lightgray;
+}
+
+.table-container
+{
+    padding: 0 10px;
+}
+
+.button-container
+{
+    position: absolute;
+    top: 40px;
+    right: 35px;
+}

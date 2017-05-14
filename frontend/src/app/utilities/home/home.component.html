@@ -1,7 +1,7 @@
 <app-toolbar></app-toolbar>
 <div class="container">
   <div class="body menu">
-    <app-nav-menu></app-nav-menu>
+    <app-nav-menu [active]="activeRoute"></app-nav-menu>
   </div>
   <div class="body content">
     <router-outlet></router-outlet>

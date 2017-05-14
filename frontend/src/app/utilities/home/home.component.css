@@ -1,10 +1,12 @@
 .container
 {
     overflow: hidden;
+    position: relative;
 }
 
 .body
 {
+    height: calc(100vh - 115px);
     padding: 10px;
     box-sizing: border-box;
     float: left;
@@ -12,10 +14,11 @@
 
 .content
 {
-    width: 70%;
+    width: 80%;
+    overflow-y:scroll;
 }
 
 .menu
 {
-    width: 30%;
+    width: 20%;
 }

@@ -32,6 +32,29 @@ public class UserController {
             return new ResponseEntity<>(userDAOService.findAll(), HttpStatus.OK);
     }
 
+    @RequestMapping(value="/modify", method = RequestMethod.POST)
+    private ResponseEntity<UserEntity> modifyUser(@RequestParam (required = false) Long id, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String address, @RequestParam String phone, @RequestParam String email, @RequestParam Long roleId)
+    {
+        UserEntity target;
+        if (id != null)
+            target = userDAOService.findOne(id);
+        else
+            target = new UserEntity();
+
+        target.setFirstName(firstName);
+        target.setLastName(lastName);
+        target.setAddress(address);
+        target.setEmail(email);
+        target.setPhone(phone);
+
+        RoleEntity userRole = roleDAOService.findOne(roleId);
+        target.setUserRole(userRole);
+
+        userDAOService.save(target);
+
+        return new ResponseEntity<>(target, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     private ResponseEntity<UserEntity> getUser(@PathVariable long id) {
         return new ResponseEntity<>(userDAOService.findOne(id), HttpStatus.OK);

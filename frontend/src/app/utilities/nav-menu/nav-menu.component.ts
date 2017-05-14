@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
 
+  @Input() active;
+
   constructor(
     private router: Router
   ) { }
@@ -15,7 +17,7 @@ export class NavMenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  linkTo(url:String)
+  linkTo(url: String)
   {
     this.router.navigate([url]);
   }

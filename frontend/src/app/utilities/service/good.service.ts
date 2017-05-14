@@ -6,22 +6,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class UserService {
+export class GoodService {
     constructor(private http: Http) { }
 
-    getUsers() {
-        return this.http.get('/api/user/all').subscribe(response => {
+    getGoods() {
+        return this.http.get('/api/item/all').map(response => {
             return response.json();
         });
     }
 
-    getUser(id: number)
+    getGood(id: number)
     {
 
-    }
-
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
     }
 }

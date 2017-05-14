@@ -6,21 +6,26 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
-import { AuthenticationService } from './authentication.service';
-import { UserService } from './user.service';
+import { LoginComponent } from './utilities/login/login.component';
+import { AuthGuard } from './utilities/authentication/auth.guard';
+import { AuthenticationService } from './utilities/authentication/authentication.service';
+import { UserService } from './utilities/service/user.service';
+import { GoodService } from './utilities/service/good.service';
+import { TransactionService } from './utilities/service/transaction.service';
 import { routing } from './app.routing';
-import { HomeComponent } from './home/home.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { FooterComponent } from './footer/footer.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { GoodListComponent } from './good-list/good-list.component';
-import { GoodDetailComponent } from './good-detail/good-detail.component';
-import { TransactionListComponent } from './transaction-list/transaction-list.component';
-import { TransactionDetailComponent } from './transaction-detail/transaction-detail.component';
+import { HomeComponent } from './utilities/home/home.component';
+import { ToolbarComponent } from './utilities/toolbar/toolbar.component';
+import { NavMenuComponent } from './utilities/nav-menu/nav-menu.component';
+import { FooterComponent } from './utilities/footer/footer.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { GoodListComponent } from './goods/good-list/good-list.component';
+import { GoodDetailComponent } from './goods/good-detail/good-detail.component';
+import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
+import { TransactionDetailComponent } from './transactions/transaction-detail/transaction-detail.component';
+import { GoodFormComponent } from './goods/good-form/good-form.component';
+import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { TransactionDetailComponent } from './transaction-detail/transaction-det
     GoodListComponent,
     GoodDetailComponent,
     TransactionListComponent,
-    TransactionDetailComponent
+    TransactionDetailComponent,
+    GoodFormComponent,
+    TransactionFormComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +57,9 @@ import { TransactionDetailComponent } from './transaction-detail/transaction-det
   providers: [
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    GoodService,
+    TransactionService
   ],
   bootstrap: [AppComponent]
 })
