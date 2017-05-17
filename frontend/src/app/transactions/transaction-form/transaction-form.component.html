@@ -12,35 +12,46 @@
   <div class="table-container">
     <table>
       <thead>
+        <td></td>
         <td>Item</td>
         <td>Price</td>
         <td>Qty</td>
-        <td>Discount <span *ngIf="discount > 0">({{ discount * 100 }}%)</span></td>
+        <td>
+          Discount <span *ngIf="discount > 0">({{ discount * 100 }}%)</span>
+          <p class="notice" *ngIf="discount > 0">*)Doesn't Apply to Groceries!</p>
+        </td>
         <td>Subtotal</td>
       </thead>
       <tbody>
         <tr *ngIf="selectedGoods.length === 0">
-          <td colspan="5"><p style="text-align: center; font-weight:bold; font-style: italic">No item selected. Please add an item.</p></td>
+          <td colspan="6"><p style="text-align: center; font-weight:bold; font-style: italic">No item selected. Please add an item.</p></td>
         </tr>
         <tr *ngFor="let good of selectedGoods">
+          <td style="text-align: center">
+            <button md-raised-button class="mini-button" color="warn" (click)="toggleDelete(good.item.id)"><md-icon>delete</md-icon></button>
+          </td>
           <td>{{ good.item.name }}</td>
           <td>{{ good.singlePrice }}</td>
-          <td>{{ good.qty }}</td>
+          <td>
+            <button md-raised-button class="mini-button" [disabled]="good.qty === 1" (click)="changeQty('down', good.item.id)"><md-icon>keyboard_arrow_down</md-icon></button>
+            &nbsp;{{ good.qty }}&nbsp;
+            <button md-raised-button class="mini-button" (click)="changeQty('up', good.item.id)"><md-icon>keyboard_arrow_up</md-icon></button>
+          </td>
           <td>{{ good.discount }}</td>
           <td>{{ good.subtotal }}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">Total Price</td>
+          <td colspan="5">Total Price</td>
           <td>{{ totalPrice }}</td>
         </tr>
         <tr>
-          <td colspan="4">100-Fold Discount</td>
+          <td colspan="5">100-Fold Discount</td>
           <td>{{ foldDiscount }}</td>
         </tr>
         <tr>
-          <td colspan="4">Grand Total</td>
+          <td colspan="5">Grand Total</td>
           <td>{{ grandTotal }}</td>
         </tr>
       </tfoot>

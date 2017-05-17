@@ -111,10 +111,51 @@ export class TransactionFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result)
       {
-        this.selectedGoods.push(this.calculateDiscount(result));
+        if (!this.goodExists(result))
+          this.selectedGoods.push(this.calculateDiscount(result));
         this.recalculateSum();
       }
     });
+  }
+
+  goodExists(goodObject): boolean
+  {
+    for (let a = 0; a < this.selectedGoods.length; a++)
+    {
+      let item = this.selectedGoods[a];
+      if (item.item.id === goodObject.item.id)
+      {
+        item.qty += goodObject.qty;
+        this.calculateDiscount(item);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  changeQty(code: string, itemId: number): void
+  {
+    for (let a = 0; a < this.selectedGoods.length; a++)
+    {
+      let item = this.selectedGoods[a];
+      if (item.item.id === itemId)
+      {
+        if (code === 'up')
+          item.qty++;
+        else
+        {
+          item.qty--;
+        }
+        this.calculateDiscount(item);
+      }
+    }
+    this.recalculateSum();
+  }
+
+  toggleDelete(itemId: number): void
+  {
+    this.selectedGoods = this.selectedGoods.filter(item => {return (item.item.id !== itemId)});
+    this.recalculateSum();
   }
 
   updateCustomer($event)
@@ -127,7 +168,6 @@ export class TransactionFormComponent implements OnInit {
 
   calculateDiscount(result)
   {
-    this.discount = 0;
     if (!this.selectedUser.id)
       return result;
     else
@@ -153,11 +193,19 @@ export class TransactionFormComponent implements OnInit {
         default:
           break;
       }
+
+      let discountPrice;
       let totalPrice = result.qty * result.singlePrice;
-      let discountPrice = this.discount * totalPrice;
+
+      if (result.item.itemCategory.name.toLowerCase() === 'grocery' || result.item.itemCategory.name.toLowerCase() === 'groceries')
+        discountPrice = 0;
+      else
+        discountPrice = this.discount * totalPrice;
+
       let subtotal = totalPrice - discountPrice;
       result.discount = discountPrice;
       result.subtotal = subtotal;
+
       return result;
     }
   }
@@ -192,31 +240,32 @@ export class TransactionFormComponent implements OnInit {
       else
       {
           // Construct Payload Object
-          let payload = new FormData();
-          payload.append('transactionDetails', JSON.stringify(this.selectedGoods));
-          payload.append('customerId', this.selectedUser.id);
-          payload.append('totalPrice', this.totalPrice);
-          payload.append('discount', this.foldDiscount);
-          payload.append('grandTotal', this.grandTotal);
+        let payload = new FormData();
+        payload.append('transactionDetails', JSON.stringify(this.selectedGoods));
+        payload.append('customerId', this.selectedUser.id);
+        payload.append('totalPrice', this.totalPrice);
+        payload.append('discount', this.foldDiscount);
+        payload.append('grandTotal', this.grandTotal);
 
+        if (this.targetTransaction)
+          payload.append('id', this.targetTransaction);
+
+        this.transactionService.saveTransaction(payload).subscribe(response => {
+          this.selectedGoods = [];
           if (this.targetTransaction)
-            payload.append('id', this.targetTransaction);
-
-          this.transactionService.saveTransaction(payload).subscribe(response => {
-              if (this.targetTransaction)
-              {
-                this.snackBar.open('Transaction Edited Successfully', 'OK', {
-                  duration: 1500
-                });
-              }
-              else
-              {
-                this.router.navigate(['transaction', response.id]);
-                this.snackBar.open('Transaction Added Successfully', 'OK', {
-                  duration: 1500
-                });
-              }
-          });
+          {
+            this.snackBar.open('Transaction Edited Successfully', 'OK', {
+              duration: 1500
+            });
+          }
+          else
+          {
+            this.router.navigate(['transactions', response.id]);
+            this.snackBar.open('Transaction Added Successfully', 'OK', {
+              duration: 1500
+            });
+          }
+        });
       }
   }
 }

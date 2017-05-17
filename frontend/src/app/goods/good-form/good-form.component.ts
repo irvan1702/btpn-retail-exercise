@@ -77,6 +77,7 @@ export class GoodFormComponent implements OnInit {
       }
       else
       {
+        this.router.navigate(['goods', response.id]);
         this.snackBar.open(`Successfully Added ${response.name}`, 'OK', {
           duration: 1500
         });

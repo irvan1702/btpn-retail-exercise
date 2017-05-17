@@ -85,11 +85,11 @@ export class UserFormComponent implements OnInit {
         });
       else
       {
+        this.router.navigate(['users', response.id]);
         this.snackBar.open(`Successfully added ${response.firstName} ${response.lastName}`, 'OK', {
           duration: 1500
         });
-        this.router.navigate(['/users']);
       }
-    })
+    });
   }
 }
