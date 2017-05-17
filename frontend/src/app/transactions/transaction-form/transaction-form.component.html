@@ -1,3 +1,55 @@
-<p>
-  transaction-form works!
-</p>
+<h1 class="form-title">{{ title }}</h1>
+<div>
+  <div class="transaction-upper-container">
+    <md-select placeholder="Customer" name="user" id="user" [(ngModel)]="selectedUser.id" (change)="updateCustomer($event)">
+      <md-option *ngFor="let user of users" [value]="user.id">
+        {{ user.firstName }} {{ user.lastName }} - {{ user.userRole.roleName | titlecase }}
+      </md-option>
+    </md-select>
+    <button md-raised-button class="add-item" color="primary" type="button" (click)="toggleAddGoodDialog()">Add Item</button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <td>Item</td>
+        <td>Price</td>
+        <td>Qty</td>
+        <td>Discount <span *ngIf="discount > 0">({{ discount * 100 }}%)</span></td>
+        <td>Subtotal</td>
+      </thead>
+      <tbody>
+        <tr *ngIf="selectedGoods.length === 0">
+          <td colspan="5"><p style="text-align: center; font-weight:bold; font-style: italic">No item selected. Please add an item.</p></td>
+        </tr>
+        <tr *ngFor="let good of selectedGoods">
+          <td>{{ good.item.name }}</td>
+          <td>{{ good.singlePrice }}</td>
+          <td>{{ good.qty }}</td>
+          <td>{{ good.discount }}</td>
+          <td>{{ good.subtotal }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">Total Price</td>
+          <td>{{ totalPrice }}</td>
+        </tr>
+        <tr>
+          <td colspan="4">100-Fold Discount</td>
+          <td>{{ foldDiscount }}</td>
+        </tr>
+        <tr>
+          <td colspan="4">Grand Total</td>
+          <td>{{ grandTotal }}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <h4 style="text-align: center" *ngIf="selectedGoods.length === 0">You haven't added any item yet</h4>
+  </div>
+
+  <div class="button-container">
+    <button md-raised-button color="primary" type="button" (click)="saveTransaction()">Save</button>
+    <button md-raised-button routerLink="/transactions" color="warn" type="button">Back</button>
+  </div>
+</div>

@@ -17,6 +17,29 @@ export class TransactionService {
 
     getTransaction(id: number)
     {
+        return this.http.get(`/api/transaction/${id}`).map(response => {
+            return response.json();
+        });
+    }
 
+    getTransactionDetails(id: number)
+    {
+        return this.http.get(`/api/transaction/${id}/details`).map(response => {
+            return response.json();
+        });
+    }
+
+    saveTransaction(payload: FormData)
+    {
+        return this.http.post('/api/transaction/modify', payload).map(response => {
+            return response.json();
+        });
+    }
+
+    deleteTransaction(id: number)
+    {
+        return this.http.delete(`/api/transaction/${id}`).map(response => {
+            return response.json();
+        })
     }
 }

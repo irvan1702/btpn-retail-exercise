@@ -1,5 +1,6 @@
 package com.btpn.persistence.entity.brs;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class TransactionEntity {
 	private UserEntity user;
 	
 	@OneToMany(mappedBy = "transaction", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<TransactionDetailEntity> transactionDetails;
+	@JsonIgnore()
+    private List<TransactionDetailEntity> transactionDetails = new ArrayList<>();
 
 
 	public Long getId() {
@@ -89,6 +90,10 @@ public class TransactionEntity {
 	}
 
 	public void setTransactionDetails(List<TransactionDetailEntity> transactionDetails) {
-		this.transactionDetails = transactionDetails;
+		for (TransactionDetailEntity transactionDetail: transactionDetails)
+		{
+			this.transactionDetails.add(transactionDetail);
+			transactionDetail.setTransaction(this);
+		}
 	}
 }

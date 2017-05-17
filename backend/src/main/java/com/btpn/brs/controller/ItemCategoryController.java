@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,7 +27,7 @@ public class ItemCategoryController {
     }
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
-    ResponseEntity<Iterable<ItemEntity>> getItemsInCategory(@Param("cat_id") long id)
+    ResponseEntity<Iterable<ItemEntity>> getItemsInCategory(@RequestParam ("cat_id") Long id)
     {
         ItemCategoryEntity category = itemCategoryDAOService.findOne(id);
         return new ResponseEntity<>(category.getItems(), HttpStatus.OK);

@@ -17,6 +17,29 @@ export class GoodService {
 
     getGood(id: number)
     {
+        return this.http.get(`/api/item/${id}`).map(response => {
+            return response.json();
+        });
+    }
 
+    modifyGood(itemData)
+    {
+        return this.http.post('/api/item/modify', itemData).map(response => {
+            return response.json();
+        });
+    }
+
+    deleteGood(id: number)
+    {
+        return this.http.delete(`/api/item/${id}`).map(response => {
+            return response.json();
+        });
+    }
+
+    getCategories()
+    {
+        return this.http.get('api/category/all').map(response => {
+            return response.json();
+        });
     }
 }

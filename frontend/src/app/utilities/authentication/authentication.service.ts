@@ -18,7 +18,7 @@ export class AuthenticationService {
 
         //If authorized, set a session.
         return this.http.post('/api/account/authorize', credentials).map(response=>{
-            localStorage.setItem('currentUser', "admin");
+            localStorage.setItem('currentUser', 'admin');
             return response.json();
         });
     }

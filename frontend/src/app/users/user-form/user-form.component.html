@@ -1,3 +1,34 @@
-<p>
-  user-form works!
-</p>
+<h1 class="form-title">{{ title }}</h1>
+    <p class="notice">*All fields are required</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <md-input-container class="input-block">
+            <input mdInput [(ngModel)]="user.firstName" placeholder="First Name" name="firstName" id="firstName" formControlName="firstName">
+            <md-error>This field is required</md-error>
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput [(ngModel)]="user.lastName" placeholder="Last Name" name="lastName" id="lastName" formControlName="lastName">
+            <md-error>This field is required</md-error>
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput [(ngModel)]="user.email" placeholder="Email" name="email" id="email" formControlName="email">
+            <md-error *ngIf="form.controls.email.errors?.required">This field is required</md-error>
+            <md-error *ngIf="form.controls.email.errors?.email && !form.controls.email.errors?.required">Please input a valid email address</md-error>
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput [(ngModel)]="user.phone" placeholder="Phone Number" name="phone" id="phone" formControlName="phone">
+            <md-error>This field is required</md-error>
+        </md-input-container>
+        <md-input-container class="input-block">
+            <textarea rows="5" mdInput mdTextAreaAutosize [(ngModel)]="user.address" placeholder="Address" name="address" id="address" formControlName="address"></textarea>
+            <md-error>This field is required</md-error>
+        </md-input-container>
+        <md-select placeholder="Role" [(ngModel)]="user.userRole.id" name="roleId" id="roleId" formControlName="roleId">
+            <md-option *ngFor="let role of roles" [value]="role.id">
+                {{ role.roleName | titlecase }}
+            </md-option>
+        </md-select>
+        <div class="button-container">
+            <button md-raised-button color="primary" type="submit">Save</button>
+            <button md-raised-button routerLink="/users" color="warn" type="button">Back</button>
+        </div>
+    </form>

@@ -4,6 +4,9 @@ import com.btpn.persistence.entity.brs.RoleEntity;
 import com.btpn.persistence.entity.brs.UserEntity;
 import com.btpn.persistence.service.role.RoleDAOService;
 import com.btpn.persistence.service.user.UserDAOService;
+
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +42,10 @@ public class UserController {
         if (id != null)
             target = userDAOService.findOne(id);
         else
-            target = new UserEntity();
+        {
+        	target = new UserEntity();
+        	target.setRegisterDate(new Date());
+        }
 
         target.setFirstName(firstName);
         target.setLastName(lastName);
@@ -58,5 +64,12 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     private ResponseEntity<UserEntity> getUser(@PathVariable long id) {
         return new ResponseEntity<>(userDAOService.findOne(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    private ResponseEntity<UserEntity> deleteUser(@PathVariable long id) {
+    	UserEntity target = userDAOService.findOne(id);
+    	userDAOService.delete(target);
+        return new ResponseEntity<>(target, HttpStatus.OK);
     }
 }

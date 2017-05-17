@@ -1,0 +1,35 @@
+form
+{
+    padding: 0 10px;
+    position: relative;
+}
+
+form md-input-container,md-select
+{
+    display: block;
+    margin: 40px auto;
+}
+
+.button-container
+{
+    margin-bottom: 10px;
+    float: right;
+}
+
+.mat-input-error
+{
+    margin-top: 15px;
+}
+
+.notice
+{
+    color:red; 
+    font-size:10pt; 
+    font-style:italic; 
+    margin: 0;
+}
+
+.form-title
+{
+    margin-bottom: 10px;
+}

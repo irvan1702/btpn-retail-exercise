@@ -1,0 +1,25 @@
+<h1 md-dialog-title>Add New Item</h1>
+<div md-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <md-select placeholder="Item" name="itemId" id="itemId" (change)="onItemChange($event)" formControlName="itemId">
+            <md-option *ngFor="let good of goods" [value]="good.id">
+                {{ good.name }}
+            </md-option>
+        </md-select>
+        <md-input-container class="input-block">
+            <input mdInput type="number" placeholder="Price" name="price" id="price" formControlName="price">
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput type="number" placeholder="Qty" (change)="calculateSubtotal($event)" name="qty" id="qty" formControlName="qty">
+        </md-input-container>
+        <md-input-container class="input-block">
+            <input mdInput type="number" placeholder="Subtotal" name="subtotal" id="subtotal" formControlName="subtotal">
+        </md-input-container>
+    </form>
+</div>
+<div md-dialog-actions>
+    <div class="dialog-button-container">
+        <button md-raised-button color="primary" (click)="closeDialog(true)">Save</button>
+        <button md-raised-button color="warn" (click)="closeDialog(false)">Cancel</button>
+    </div>
+</div>

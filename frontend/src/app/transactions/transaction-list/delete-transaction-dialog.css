@@ -1,0 +1,9 @@
+.dialog-button-container
+{
+    margin: 0 auto;
+}
+
+.dialog-button-container button
+{
+    margin: 0 10px;
+}

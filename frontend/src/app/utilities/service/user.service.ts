@@ -24,7 +24,16 @@ export class UserService {
 
     getUser(id: number)
     {
+        return this.http.get(`api/user/${id}`).map(response => {
+            return response.json();
+        })
+    }
 
+    deleteUser(id: number)
+    {
+        return this.http.delete(`api/user/${id}`).map(response => {
+            return response.json();
+        })
     }
 
     getRoles()

@@ -1,3 +1,21 @@
-<p>
-  good-form works!
-</p>
+<h1 class="form-title">{{ title }}</h1>
+<p class="notice">*All fields are required</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <md-input-container class="input-block">
+    <input mdInput [(ngModel)]="selectedGood.name" placeholder="Item Name" name="name" id="name" formControlName="name">
+    <md-error>This field is required</md-error>
+  </md-input-container>
+  <md-input-container class="input-block">
+    <input mdInput type="number" [(ngModel)]="selectedGood.price" placeholder="Price" name="price" id="price" formControlName="price">
+    <md-error>This field is required</md-error>
+  </md-input-container>
+  <md-select placeholder="Category" [(ngModel)]="selectedGood.itemCategory.id" name="categoryId" id="categoryId" formControlName="categoryId">
+    <md-option *ngFor="let category of categories" [value]="category.id">
+      {{ category.name }}
+    </md-option>
+  </md-select>
+  <div class="button-container">
+    <button md-raised-button color="primary" type="submit">Save</button>
+    <button md-raised-button routerLink="/goods" color="warn" type="button">Back</button>
+  </div>
+</form>

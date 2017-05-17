@@ -1,0 +1,11 @@
+<h1 md-dialog-title>Confirm Delete User</h1>
+<div md-dialog-content>
+    Are you sure you want to delete <b>{{ userName }}</b>?<br>
+    Doing this will also delete all transactions made by this user!
+</div>
+<div md-dialog-actions>
+  <div class="dialog-button-container">
+    <button md-raised-button color="primary" (click)="dialogRef.close(true)">Yes</button>
+    <button md-raised-button color="warn" (click)="dialogRef.close(false)">No</button>
+  </div>
+</div>

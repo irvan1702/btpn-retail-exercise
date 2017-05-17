@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdSnackBar, MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { GoodService } from '../../utilities/service/good.service';
 
 @Component({
@@ -18,10 +19,18 @@ export class GoodListComponent implements OnInit {
 
   constructor(
     private goodService : GoodService,
-    private router: Router
+    private router: Router,
+    private dialog: MdDialog,
+    private snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
+    this.getGoods();
+  }
+
+  getGoods()
+  {
+    this.items = [];
     this.goodService.getGoods().subscribe(response => {
       for (let a = 0; a < response.length; a++)
       {
@@ -49,6 +58,37 @@ export class GoodListComponent implements OnInit {
 
   deleteClick(item)
   {
+    let config = new MdDialogConfig;
 
+    let dialogRef = this.dialog.open(DeleteGoodDialog, config);
+    dialogRef.componentInstance.itemName = item[1];
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.deleteGood(item[0]);
+    });
   }
+
+  deleteGood(itemId: number)
+  {
+    this.goodService.deleteGood(itemId).subscribe(response => {
+      this.getGoods();
+      this.snackBar.open(`Successfully deleted ${response.name}`, 'OK', {
+        duration: 1500
+      });
+    });
+  }
+}
+
+@Component({
+  selector: 'delete-good-dialog',
+  templateUrl: './delete-good-dialog.html',
+  styleUrls: [
+      './delete-good-dialog.css'
+  ]
+})
+export class DeleteGoodDialog {
+  constructor(public dialogRef: MdDialogRef<DeleteGoodDialog>) {}
+
+  itemName;
 }
