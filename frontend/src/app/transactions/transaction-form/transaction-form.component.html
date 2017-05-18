@@ -1,4 +1,5 @@
 <h1 class="form-title">{{ title }}</h1>
+<p *ngIf="transactionDate">This transaction was added on {{ transactionDate | date:'shortDate' }}</p>
 <div>
   <div class="transaction-upper-container">
     <md-select placeholder="Customer" name="user" id="user" [(ngModel)]="selectedUser.id" (change)="updateCustomer($event)">

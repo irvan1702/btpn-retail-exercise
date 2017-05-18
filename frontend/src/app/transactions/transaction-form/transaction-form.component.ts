@@ -34,6 +34,7 @@ export class TransactionFormComponent implements OnInit {
 
   filteredUsers;
   targetTransaction;
+  transactionDate;
   totalPrice = 0;
   grandTotal = 0;
   users;
@@ -66,31 +67,38 @@ export class TransactionFormComponent implements OnInit {
       if (params['id'] && !isNaN(params['id']))
       {
         this.targetTransaction = params['id'];
-
-        this.transactionService.getTransaction(params['id']).subscribe(response => {
-          this.selectedUser = response.user;
-          this.title = `Edit Transaction #${response.id}`;
-        });
-
-        this.transactionService.getTransactionDetails(params['id']).subscribe(response => {
-          for (let a = 0; a < response.length; a++) {
-            const detail = response[a];
-            this.selectedGoods.push({
-              item: detail.item,
-              singlePrice: detail.item.price,
-              qty: detail.qty,
-              discount: detail.discount,
-              subtotal: detail.subtotal,
-            });
-
-            this.recalculateDiscount();
-            this.recalculateSum();
-          }
-        });
+        this.getTransaction(params['id']);
       }
       else
         this.title = `Add New Transaction`;
     });
+  }
+
+  getTransaction(id: number)
+  {
+      this.selectedGoods = [];
+
+      this.transactionService.getTransaction(id).subscribe(response => {
+          this.selectedUser = response.user;
+          this.title = `Edit Transaction #${response.id}`;
+          this.transactionDate = response.transactionDate;
+      });
+
+      this.transactionService.getTransactionDetails(id).subscribe(response => {
+          for (let a = 0; a < response.length; a++) {
+              const detail = response[a];
+              this.selectedGoods.push({
+                  item: detail.item,
+                  singlePrice: detail.item.price,
+                  qty: detail.qty,
+                  discount: detail.discount,
+                  subtotal: detail.subtotal,
+              });
+
+              this.recalculateDiscount();
+              this.recalculateSum();
+          }
+      });
   }
 
   ngOnInit() {
@@ -251,7 +259,6 @@ export class TransactionFormComponent implements OnInit {
           payload.append('id', this.targetTransaction);
 
         this.transactionService.saveTransaction(payload).subscribe(response => {
-          this.selectedGoods = [];
           if (this.targetTransaction)
           {
             this.snackBar.open('Transaction Edited Successfully', 'OK', {

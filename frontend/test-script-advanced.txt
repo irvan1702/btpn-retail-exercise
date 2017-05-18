@@ -1,0 +1,47 @@
+Customer <2 Year : No Discount
+Sawi Putih - Grocery 	:  25 - 0		x 23 	= 	575
+Sapu Ijuk - H and F		:  50 - 0		x 5 	= 	250
+Greenfields - Grocery	: 100 - 0 		x 120	= 12000
+Coffee Table - H and F	: 350 - 0		x 2		=   700
+------------------------------------------------------- +
+Total Price										= 13525
+------------------------------------------------------- -
+Fold Discount			: (13525 / 100) 	x 5	=   675
+------------------------------------------------------- -
+Grand Total										= 12850
+
+Customer >2 Year : Discount 5%
+Sawi Putih - Grocery 	:  25 - 0		x 23 	= 	575
+Sapu Ijuk - H and F		:  50 - 2.5		x 5 	= 	237.5
+Greenfields - Grocery	: 100 - 0 		x 120	= 12000
+Coffee Table - H and F	: 350 - 17.5	x 2		=   665
+--------------------------------------------------------- +
+Total Price										= 13477.5
+--------------------------------------------------------- -
+Fold Discount			: (13447.5 / 100) 	x 5	=   670
+--------------------------------------------------------- -
+Grand Total										= 12807.5
+
+Store Affiliate : Discount 15%
+Sawi Putih - Grocery 	:  25 - 0		x 23 	= 	575
+Sapu Ijuk - H and F		:  50 - 7.5		x 5 	= 	212.5
+Greenfields - Grocery	: 100 - 0 		x 120	= 12000
+Coffee Table - H and F	: 350 - 52.5	x 2		=   595
+--------------------------------------------------------- +
+Total Price										= 13382.5
+--------------------------------------------------------- -
+Fold Discount			: (13382.5 / 100) 	x 5	=   665
+--------------------------------------------------------- -
+Grand Total										= 12717.5
+
+Store Employee : Discount 30%
+Sawi Putih - Grocery 	:  25 - 0		x 23 	= 	575
+Sapu Ijuk - H and F		:  50 - 15		x 5 	= 	175
+Greenfields - Grocery	: 100 - 0 		x 120	= 12000
+Coffee Table - H and F	: 350 - 105		x 2		=   490
+------------------------------------------------------- +
+Total Price										= 13240
+------------------------------------------------------- -
+Fold Discount			: (13240 / 100) 	x 5	=   660
+------------------------------------------------------- -
+Grand Total										= 12580

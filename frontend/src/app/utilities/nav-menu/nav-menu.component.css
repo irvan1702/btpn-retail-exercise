@@ -7,7 +7,7 @@
 .menu-item
 {
     border: solid black 1px;
-    padding: 20px 10px;
+    padding: 10px 10px;
     margin: 10px auto;
     cursor: pointer;
 }
@@ -15,4 +15,5 @@
 .menu-item.active
 {
     background-color: lightgray;
+    font-weight: bold;
 }
