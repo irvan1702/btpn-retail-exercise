@@ -4,6 +4,7 @@
     <app-nav-menu [active]="activeRoute"></app-nav-menu>
   </div>
   <div class="body content">
+    <p *ngIf="activeRoute==='home'">Welcome. Please select one of the menu items on the left to begin.</p>
     <router-outlet></router-outlet>
   </div>
 </div>

@@ -180,6 +180,7 @@ export class TransactionFormComponent implements OnInit {
       return result;
     else
     {
+      this.discount = 0;
       switch(this.selectedUser.userRole['id'])
       {
         case 1:
@@ -196,7 +197,7 @@ export class TransactionFormComponent implements OnInit {
           let registerDate: any = this.selectedUser.registerDate;
           let difference = Math.round(Math.abs(currentDate - registerDate) / (1000 * 3600 * 24));
           if (difference > 730)
-              this.discount = 0.05;
+            this.discount = 0.05;
           break;
         default:
           break;
